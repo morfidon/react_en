@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Application</title>
+</head>
+<body>
+    <div id="root">
+        <h1>Welcome!</h1>
+        <p id="counter">Clicked 0 times</p>
+        <button id="clickButton">Click me</button>
+    </div>
+
+    <script>
+        // Initialize the variable that stores the number of clicks
+        let count = 0;
+
+        // Get references to the HTML elements
+        const counterElement = document.getElementById('counter');
+        const buttonElement = document.getElementById('clickButton');
+
+        // Add an event listener to the button
+        buttonElement.addEventListener('click', function(){
+
+            count++;
+            
+            // Update the text in the <p> element
+            counterElement.textContent = `Clicked ${count} times`;
+        });
+
+    </script>
+</body>
+</html>
