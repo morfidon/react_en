@@ -1,14 +1,11 @@
-
 import './App.css'
-import ClickCounter from './components/ClickCounter';
+import GoldMiner from './components/GoldMiner'
 
 function App()  //THIS IS COMPONENT 
 {
     return (
       <>
-        <ClickCounter initialValue={10} incrementBy={5} buttonText='Increase by 5'/>
-        <ClickCounter initialValue={500} />
-        <ClickCounter />
+        <GoldMiner />
       </>
     );
 }
