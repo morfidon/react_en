@@ -5,6 +5,8 @@ function GoldMiner()
     const [gold, setGold] = useState(0);
     const [clickPower, setClickPower] = useState(1);
     const [upgradePowerCost, setUpgradePowerCost] = useState(10);
+    const [autoClickers, setAutoClickers] = useState(0);
+    const [autoClickersCost, setAutoClickersCost] = useState(20);
 
     const upgradeClickPower = () =>
     {
@@ -16,16 +18,27 @@ function GoldMiner()
         }
     }
 
+    const buyAutoClicker = () =>
+    {
+        if (gold >= autoClickersCost)
+        {
+            setGold(prevGold => prevGold - autoClickersCost);
+            setAutoClickers(prevAutoClickers => prevAutoClickers + 1);
+            setAutoClickersCost(prevAutoClickersCost => prevAutoClickersCost * 2);
+        }
+    }
     return (
         <div>
             <h1>Gold Miner!</h1>
             <p>Gold: {gold}</p>
             <p>Mining level: {clickPower} </p>
+            <p>Auto-Clickers: {autoClickers}</p>
             <button onClick={() => {
                 setGold(prevGold => prevGold + clickPower);
 
             }}>Mine Gold</button>
             <button onClick={upgradeClickPower}>Upgrade Click Power (Cost: {upgradePowerCost} Gold)</button>
+            <button onClick={buyAutoClicker}>Auto Clicker (Cost: {autoClickersCost} Gold)</button>
         </div>
     );    
 }
