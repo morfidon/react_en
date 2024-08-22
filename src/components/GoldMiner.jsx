@@ -1,13 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function GoldMiner()
 {
-    const [gold, setGold] = useState(0);
+    const [gold, setGold] = useState(100);
     const [clickPower, setClickPower] = useState(1);
     const [upgradePowerCost, setUpgradePowerCost] = useState(10);
-    const [autoClickers, setAutoClickers] = useState(0);
+    const [autoClickers, setAutoClickers] = useState(3);
     const [autoClickersCost, setAutoClickersCost] = useState(20);
 
+    useEffect(() => {
+        
+        const timer = setInterval(() => {
+            setGold(prevGold => prevGold + autoClickers);
+        }, 1000);
+
+        return () => clearInterval(timer); //clearing function
+    }, [autoClickers]);
     const upgradeClickPower = () =>
     {
         if (gold >= upgradePowerCost)
