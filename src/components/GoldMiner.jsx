@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-
+import { Coins, Pickaxe, Cpu } from 'lucide-react'
 function GoldMiner()
 {
     const [gold, setGold] = useState(100);
@@ -38,18 +38,18 @@ function GoldMiner()
     return (
         <div>
             <h1>Gold Miner!</h1>
-            <p>Gold: {gold}</p>
-            <p>Mining level: {clickPower} </p>
-            <p>Auto-Clickers: {autoClickers}</p>
+            <p><Coins /> Gold: {gold}</p>
+            <p><Pickaxe /> Mining level: {clickPower} </p>
+            <p><Cpu /> Auto-Clickers: {autoClickers}</p>
             <button onClick={() => {
                 setGold(prevGold => prevGold + clickPower);
 
-            }}>Mine Gold</button>
+            }}><Coins /> Mine Gold</button>
             <button onClick={upgradeClickPower} disabled={gold < upgradePowerCost}>
-                Upgrade Click Power (Cost: {upgradePowerCost} Gold)
+            <Pickaxe /> Upgrade Click Power (Cost: {upgradePowerCost} Gold)
             </button>
             <button onClick={buyAutoClicker} disabled={gold < autoClickersCost}>
-                Auto Clicker (Cost: {autoClickersCost} Gold)
+            <Cpu />     Auto Clicker (Cost: {autoClickersCost} Gold)
             </button>
         </div>
     );    
