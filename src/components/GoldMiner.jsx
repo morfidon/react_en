@@ -10,9 +10,9 @@ function GoldMiner()
     {
         if (gold >= upgradePowerCost)
         {
-            setGold(gold - upgradePowerCost);
-            setClickPower(clickPower + 1);
-            setUpgradePowerCost(upgradePowerCost * 2);
+            setGold(prevGold => prevGold - upgradePowerCost);
+            setClickPower(prevClickPower => prevClickPower + 1);
+            setUpgradePowerCost(prevUpgradePowerCost => prevUpgradePowerCost * 2);
         }
     }
 
@@ -22,7 +22,8 @@ function GoldMiner()
             <p>Gold: {gold}</p>
             <p>Mining level: {clickPower} </p>
             <button onClick={() => {
-                setGold(gold + clickPower);
+                setGold(prevGold => prevGold + clickPower);
+
             }}>Mine Gold</button>
             <button onClick={upgradeClickPower}>Upgrade Click Power (Cost: {upgradePowerCost} Gold)</button>
         </div>
