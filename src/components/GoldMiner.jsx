@@ -5,7 +5,7 @@ function GoldMiner()
     const [gold, setGold] = useState(100);
     const [clickPower, setClickPower] = useState(1);
     const [upgradePowerCost, setUpgradePowerCost] = useState(10);
-    const [autoClickers, setAutoClickers] = useState(3);
+    const [autoClickers, setAutoClickers] = useState(0);
     const [autoClickersCost, setAutoClickersCost] = useState(20);
 
     useEffect(() => {
@@ -45,8 +45,12 @@ function GoldMiner()
                 setGold(prevGold => prevGold + clickPower);
 
             }}>Mine Gold</button>
-            <button onClick={upgradeClickPower}>Upgrade Click Power (Cost: {upgradePowerCost} Gold)</button>
-            <button onClick={buyAutoClicker}>Auto Clicker (Cost: {autoClickersCost} Gold)</button>
+            <button onClick={upgradeClickPower} disabled={gold < upgradePowerCost}>
+                Upgrade Click Power (Cost: {upgradePowerCost} Gold)
+            </button>
+            <button onClick={buyAutoClicker} disabled={gold < autoClickersCost}>
+                Auto Clicker (Cost: {autoClickersCost} Gold)
+            </button>
         </div>
     );    
 }
