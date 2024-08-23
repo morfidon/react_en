@@ -41,9 +41,27 @@ function GoldMiner()
         <div className="gold-clicker">
             <h1>Gold Miner!</h1>
             <div className="stats">
-                <p><Coins /> Gold: {gold}</p>
-                <p><Pickaxe /> Mining level: {clickPower} </p>
-                <p><Cpu /> Auto-Clickers: {autoClickers}</p>
+                <p><Coins /> Gold: 
+                    <motion.span key={gold}
+                        initial={{ opacity: 0 }} 
+                        animate={{ opacity: 1 }}>
+                        {gold}
+                    </motion.span>
+                </p>
+                <p><Pickaxe /> Mining level: 
+                    <motion.span key={clickPower}
+                            initial={{ opacity: 0 }} 
+                            animate={{ opacity: 1 }}>
+                            {clickPower}
+                    </motion.span> 
+                </p>
+                <p><Cpu /> Auto-Clickers: 
+                    <motion.span key={autoClickers}
+                            initial={{ opacity: 0 }} 
+                            animate={{ opacity: 1 }}>
+                            {autoClickers}
+                    </motion.span>
+                </p>
             </div>
             <div className="buttons">
                 <button onClick={() => {
