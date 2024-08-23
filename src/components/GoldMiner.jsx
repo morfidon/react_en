@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
+import { motion } from "framer-motion"
 import './GoldMiner.css'
 function GoldMiner()
 {
