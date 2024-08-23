@@ -1,7 +1,25 @@
 import { useEffect, useState } from 'react'
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
 import { motion } from "framer-motion"
+import merge from 'lodash.merge'
 import './GoldMiner.css'
+const animatedProperties =
+{
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+}
+function AnimatedValue({value, customAnimationProps = {}})
+{
+    const mergedProps = merge(animatedProperties, customAnimationProps);
+    return (
+        <motion.span
+        key={value}
+        {...mergedProps}
+        >
+            {value}
+        </motion.span>
+    );
+}
 function GoldMiner()
 {
     const [gold, setGold] = useState(100);
@@ -37,9 +55,9 @@ function GoldMiner()
             setAutoClickersCost(prevAutoClickersCost => prevAutoClickersCost * 2);
         }
     }
-    const animatedProperties =
+    const customProps =
     {
-        initial: { opacity: 0, y: 20 },
+        initial: { opacity: 0, y: -10 },
         animate: { opacity: 1, y: 0 },
     }
     return (
@@ -47,25 +65,13 @@ function GoldMiner()
             <h1>Gold Miner!</h1>
             <div className="stats">
                 <p><Coins /> Gold: 
-                    <motion.span key={gold}
-                        {...animatedProperties}
-                        >
-                        {gold}
-                    </motion.span>
+                    <AnimatedValue value={gold} customAnimationProps={customProps}/>
                 </p>
                 <p><Pickaxe /> Mining level: 
-                    <motion.span key={clickPower}
-                            {...animatedProperties}>
-                            {clickPower}
-                    </motion.span> 
+                    <AnimatedValue value={clickPower} />
                 </p>
                 <p><Cpu /> Auto-Clickers: 
-                    <motion.span key={autoClickers}
-                            {...animatedProperties}
-                            initial={{ ...animatedProperties.initial, y: -30 }}
-                            >
-                            {autoClickers}
-                    </motion.span>
+                    <AnimatedValue value={autoClickers} />
                 </p>
             </div>
             <div className="buttons">
