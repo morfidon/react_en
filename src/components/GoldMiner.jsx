@@ -37,28 +37,33 @@ function GoldMiner()
             setAutoClickersCost(prevAutoClickersCost => prevAutoClickersCost * 2);
         }
     }
+    const animatedProperties =
+    {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+    }
     return (
         <div className="gold-clicker">
             <h1>Gold Miner!</h1>
             <div className="stats">
                 <p><Coins /> Gold: 
                     <motion.span key={gold}
-                        initial={{ opacity: 0 }} 
-                        animate={{ opacity: 1 }}>
+                        {...animatedProperties}
+                        >
                         {gold}
                     </motion.span>
                 </p>
                 <p><Pickaxe /> Mining level: 
                     <motion.span key={clickPower}
-                            initial={{ opacity: 0 }} 
-                            animate={{ opacity: 1 }}>
+                            {...animatedProperties}>
                             {clickPower}
                     </motion.span> 
                 </p>
                 <p><Cpu /> Auto-Clickers: 
                     <motion.span key={autoClickers}
-                            initial={{ opacity: 0 }} 
-                            animate={{ opacity: 1 }}>
+                            {...animatedProperties}
+                            initial={{ ...animatedProperties.initial, y: -30 }}
+                            >
                             {autoClickers}
                     </motion.span>
                 </p>
