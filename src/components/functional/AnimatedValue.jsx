@@ -1,14 +1,11 @@
 import { motion } from "framer-motion"
 import merge from 'lodash.merge'
+import * as animations from './../../utils/animations.jsx';
 
-const animatedProperties =
+function AnimatedValue({value, animationType = 'fadeInUp', customAnimationProps = {}})
 {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-}
-function AnimatedValue({value, customAnimationProps = {}})
-{
-    const mergedProps = merge(animatedProperties, customAnimationProps);
+    
+    const mergedProps = merge(animations[animationType], customAnimationProps);
     return (
         <motion.span
         key={value}

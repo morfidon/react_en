@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
+import { motion } from 'framer-motion'
 import AnimatedValue from './functional/AnimatedValue';
 import './GoldMiner.css'
-
+import {scaleOnHover} from './../utils/animations.jsx';
 function GoldMiner()
 {
     const [gold, setGold] = useState(100);
@@ -51,16 +52,19 @@ function GoldMiner()
                     <AnimatedValue value={gold} customAnimationProps={customProps}/>
                 </p>
                 <p><Pickaxe /> Mining level: 
-                    <AnimatedValue value={clickPower} />
+                    <AnimatedValue value={clickPower} animationType='bounce'/>
                 </p>
                 <p><Cpu /> Auto-Clickers: 
                     <AnimatedValue value={autoClickers} />
                 </p>
             </div>
             <div className="buttons">
-                <button onClick={() => {
+                <motion.button onClick={() => {
                     setGold(prevGold => prevGold + clickPower);
-                }}><Coins /> Mine Gold</button>
+                }}
+                
+                {...scaleOnHover}
+                ><Coins /> Mine Gold</motion.button>
                 <button onClick={upgradeClickPower} disabled={gold < upgradePowerCost}>
                 <Pickaxe /> Upgrade Click Power (Cost: {upgradePowerCost} Gold)
                 </button>
