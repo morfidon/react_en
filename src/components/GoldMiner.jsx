@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Coins, Pickaxe, Cpu } from 'lucide-react'
 import { motion } from 'framer-motion'
 import AnimatedValue from './functional/AnimatedValue';
-import './GoldMiner.css'
+import styles from './GoldMiner.module.css'
 import {scaleOnHover} from './../utils/animations.jsx';
 function GoldMiner()
 {
@@ -45,9 +45,9 @@ function GoldMiner()
         animate: { opacity: 1, y: 0 },
     }
     return (
-        <div className="gold-clicker">
+        <div className={styles.goldClicker}>
             <h1>Gold Miner!</h1>
-            <div className="stats">
+            <div className={styles.stats}>
                 <p><Coins /> Gold: 
                     <AnimatedValue value={gold} customAnimationProps={customProps}/>
                 </p>
@@ -58,7 +58,7 @@ function GoldMiner()
                     <AnimatedValue value={autoClickers} />
                 </p>
             </div>
-            <div className="buttons">
+            <div className={styles.buttons}>
                 <motion.button onClick={() => {
                     setGold(prevGold => prevGold + clickPower);
                 }}
