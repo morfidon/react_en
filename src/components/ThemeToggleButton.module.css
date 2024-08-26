@@ -12,10 +12,6 @@
 }
 
 
-.toggleButton[data-theme='dark'] {
+[data-theme="dark"] .toggleButton {
     background-color: #2196F3;
-}
-
-.toggleText {
-    margin-left: 10px;
 }

@@ -1,10 +1,9 @@
-import { useEffect, useContext } from 'react';
-import { ThemeContext } from './../context/ThemeContext.jsx';
-import styles from'./ThemeToggleButton.module.css'
+import { useEffect, useState } from 'react';
+import styles from './ThemeToggleButton.module.css'
 
 function ThemeToggleButton()
 {
-    const [theme, setTheme] = useContext(ThemeContext);
+    const [theme, setTheme] = useState('light');
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
@@ -13,15 +12,10 @@ function ThemeToggleButton()
     return (
         <>
             <button
-                className={styles.toggleButton}
-                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                data-theme={theme}  
+              className={styles.toggleButton}
+              onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             >
-            
-            <span className={styles.toggleText}>
-                {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-            </span>
-
+                Dark / Light
             </button>
         </>
     );
