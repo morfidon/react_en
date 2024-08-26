@@ -15,7 +15,7 @@ function ThemeToggleButton()
               className={styles.toggleButton}
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
             >
-                Dark / Light
+                {theme === 'light' ? 'Dark' : 'Light'}
             </button>
         </>
     );
