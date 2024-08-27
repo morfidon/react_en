@@ -4,14 +4,31 @@ import { motion } from 'framer-motion'
 import AnimatedValue from './functional/AnimatedValue';
 import styles from './GoldMiner.module.css'
 import {scaleOnHover} from './../utils/animations.jsx';
+import useLocalStorageState from 'use-local-storage-state'
+
 function GoldMiner()
 {
-    const [gold, setGold] = useState(100);
-    const [clickPower, setClickPower] = useState(1);
-    const [upgradePowerCost, setUpgradePowerCost] = useState(10);
-    const [autoClickers, setAutoClickers] = useState(0);
-    const [autoClickersCost, setAutoClickersCost] = useState(20);
-
+    const [gold, setGold] = useLocalStorageState('gold', {
+        defaultValue: 100
+    });
+    const [clickPower, setClickPower] = useLocalStorageState('clickPower', {
+        defaultValue: 1
+    });
+    const [upgradePowerCost, setUpgradePowerCost] = useLocalStorageState(
+        'upgradePowerCost',
+        {
+            defaultValue: 10
+        }
+    );
+    const [autoClickers, setAutoClickers] = useLocalStorageState('autoClickers', {
+        defaultValue: 0
+    });
+    const [autoClickersCost, setAutoClickersCost] = useLocalStorageState(
+        'autoClickersCost',
+        {
+            defaultValue: 20
+        }
+    );
     useEffect(() => {
         
         const timer = setInterval(() => {
