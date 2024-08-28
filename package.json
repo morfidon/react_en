@@ -8,9 +8,18 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "dev:electron": "electron ."
+    "dev:electron": "vite build && electron .",
+    "build:electron": "vite build && electron-builder"
   },
   "main": "electron/main.js",
+  "build": {
+    "appId": "com.gem.autoclicker",
+    "productName": "AutoClicker",
+    "files": [
+      "electron/**/*",
+      "dist/**/*"
+    ]
+  },
   "dependencies": {
     "@theme-toggles/react": "^4.1.0",
     "framer-motion": "^11.3.29",
@@ -25,6 +34,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "electron": "^32.0.1",
+    "electron-builder": "^24.13.3",
     "eslint": "^9.9.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",

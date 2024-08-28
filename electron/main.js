@@ -8,7 +8,8 @@ const __dirname = dirname(__filename);
 function createWindow() {
   const win = new BrowserWindow({
     width: 1024,
-    height: 768  
+    height: 768,
+    frame: false  
   });
 
   // Load your React app's index.html
