@@ -20,6 +20,7 @@ function createWindow() {
 app.whenReady().then(createWindow);
 
 // Quit when all windows are closed
+// eslint-disable-next-line no-undef
 app.on('window-all-closed', () => process.platform !== 'darwin' && app.quit());
 
 // Create a window if the app is activated 
