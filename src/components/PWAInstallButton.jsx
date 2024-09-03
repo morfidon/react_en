@@ -1,27 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 function PWAInstallButton() {
-    const [showInstallButton, setShowInstallButton] = useState(true);
+    const [showInstallButton, setShowInstallButton] = useState(false);
 
-    // return (
+    useEffect(() => {
 
-    //     showInstallButton 
-    //     ? 
-    //     (<button>
-    //         Install PWA app
-    //     </button>) : null    
-    // );
-    // return(
-    //     showInstallButton ?
-    //     <button>
-    //       Instal PWA app
-    //     </button> : null
-    // )
+        const handleBeforeIntallPrompt = (event) => {
+            console.log('beforeinstallprompt event fired');
+            event.preventDefault();
+            setShowInstallButton(true);
+        }
 
+        window.addEventListener('beforeinstallprompt', handleBeforeIntallPrompt);
+        return () => window.removeEventListener('beforeinstallprompt', handleBeforeIntallPrompt)
+    }, [])
+ 
     return(
-        <>            
-            {showInstallButton && (<button>Install PWA app</button>)}
-        </>
-    )       // false && IM NOT GONNA CHECK OTHER STATEMENTS
+        showInstallButton ?
+        <button>
+          Instal PWA app
+        </button> : null
+    )
+
+    
 }
 
 export default PWAInstallButton
