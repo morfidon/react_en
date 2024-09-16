@@ -42,5 +42,13 @@ export default defineConfig({
       }
     })
   ],
-  base: './'
+  base: './',
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000', // Backend server URL
+      
+      },
+    },
+  },
 })
