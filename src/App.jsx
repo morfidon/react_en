@@ -1,6 +1,4 @@
 import './App.css'
-
-import ThemeToggleButton from './components/ThemeToggleButton';
 import { ThemeProvider } from './contexts/ThemeContext';
 
 function App()  //THIS IS COMPONENT 
@@ -10,10 +8,9 @@ function App()  //THIS IS COMPONENT
       <>
         <ThemeProvider>
         
-          <ThemeToggleButton />
+       
           
-        </ThemeProvider>
-        
+        </ThemeProvider>        
       </>
     );
 }
