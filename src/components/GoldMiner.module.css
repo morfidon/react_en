@@ -27,9 +27,6 @@
 }
 
 button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: var(--button-bg);
     color: var(--button-text);
     border: none;
