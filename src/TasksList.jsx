@@ -1,3 +1,4 @@
+import { v4 } from 'uuid'
 function TasksList() {
     const tasks = [
         'Do homework',
@@ -5,6 +6,15 @@ function TasksList() {
         'Clean room',
         'Cook dinner'       
     ]
+    const tasksDictionary = tasks.map(
+        task =>
+        (
+            {
+                id: v4(),
+                text: task
+            }
+        )
+    )
     // map function
     // tasks.map(whatToDoFunction)
     //
@@ -13,7 +23,7 @@ function TasksList() {
            <ul>
                 {
                     //box.map(data => WHATTODO WITH {DATA} )
-                    tasks.map(task => <li>{task}</li>)
+                    tasksDictionary.map(task => <li key={task.id}>{task.text}</li>)
                 }
            </ul>
         </>
