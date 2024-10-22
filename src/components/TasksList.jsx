@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { v4 } from 'uuid'
 function TasksList() {
     const tasks = [
@@ -19,24 +19,28 @@ function TasksList() {
     // map function
     // tasks.map(whatToDoFunction)
     //
+    const taskInputRef = useRef();
     const handleRemoveTask = (id) => {
         setTasksDictionary(tasksDictionary.filter(task => task.id !== id))
         //filter - filter out the task with the given id 
         // data.filter(dataItem => condition)
     }
     const handleAddTask = () => {
+       
         setTasksDictionary([
             ...tasksDictionary,
             {
                 id: v4(),
-                text: document.getElementById('new-task-input').value
+                text: taskInputRef.current.value
             }
         ])
-        document.getElementById('new-task-input').value = ''
+        taskInputRef.current.value = ''
     }
+    //useRef
+    //virtual DOM
     return (
         <>
-           <input type="text" id="new-task-input" />
+           <input type="text" ref={taskInputRef} />
            <button onClick={handleAddTask}>Add Task</button>
            <ul>
                 {
