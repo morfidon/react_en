@@ -24,8 +24,20 @@ function TasksList() {
         //filter - filter out the task with the given id 
         // data.filter(dataItem => condition)
     }
+    const handleAddTask = () => {
+        setTasksDictionary([
+            ...tasksDictionary,
+            {
+                id: v4(),
+                text: document.getElementById('new-task-input').value
+            }
+        ])
+        document.getElementById('new-task-input').value = ''
+    }
     return (
         <>
+           <input type="text" id="new-task-input" />
+           <button onClick={handleAddTask}>Add Task</button>
            <ul>
                 {
                     //box.map(data => WHATTODO WITH {DATA} )
