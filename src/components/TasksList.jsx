@@ -19,7 +19,7 @@ function TasksList() {
     // map function
     // tasks.map(whatToDoFunction)
     //
-    const taskInputRef = useRef();
+    const [newTask, setNewTask] = useState('')
     const handleRemoveTask = (id) => {
         setTasksDictionary(tasksDictionary.filter(task => task.id !== id))
         //filter - filter out the task with the given id 
@@ -31,16 +31,17 @@ function TasksList() {
             ...tasksDictionary,
             {
                 id: v4(),
-                text: taskInputRef.current.value
+                text: newTask
             }
         ])
-        taskInputRef.current.value = ''
+    
+        setNewTask('')
     }
     //useRef
-    //virtual DOM
+    //onChange, managed state forms
     return (
         <>
-           <input type="text" ref={taskInputRef} />
+           <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}/>
            <button onClick={handleAddTask}>Add Task</button>
            <ul>
                 {
