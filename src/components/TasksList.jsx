@@ -32,14 +32,15 @@ function TasksList() {
         if (newTask === '') {
             return;
         }
-        setTasksDictionary([
+        const updatedTasks = ([
             ...tasksDictionary,
             {
                 id: v4(),
                 text: newTask
             }
         ])
-    
+        updatedTasks.sort((a, b) => b.text.localeCompare(a.text))
+        setTasksDictionary(updatedTasks)
         setNewTask('')
     }
 
