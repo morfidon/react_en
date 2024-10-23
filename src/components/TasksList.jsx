@@ -21,6 +21,7 @@ function TasksList() {
     // tasks.map(whatToDoFunction)
     //
     const [newTask, setNewTask] = useState('')
+    const [sortDirection, setSortDirection] = useState('asc')
     const handleRemoveTask = (id) => {
         setTasksDictionary(tasksDictionary.filter(task => task.id !== id))
         //filter - filter out the task with the given id 
@@ -46,6 +47,14 @@ function TasksList() {
 
     //useRef
     //onChange, managed state forms
+    const handleSort = () => {
+            const sortedTasks = [...tasksDictionary].sort((a, b) => {                
+                return sortDirection === 'asc' ? a.text.localeCompare(b.text) : b.text.localeCompare(a.text)
+            })
+
+            setTasksDictionary(sortedTasks)
+            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+    }
     return (
         <>  
            
@@ -55,6 +64,9 @@ function TasksList() {
                    />
                    <button type="submit">Add Task</button>
                </form>
+               <button onClick={handleSort}>
+                   Sort {sortDirection === 'asc' ? 'desc' : 'asc'}
+               </button>
            <ul>
                 {
                     //box.map(data => WHATTODO WITH {DATA} )
