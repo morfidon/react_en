@@ -25,8 +25,12 @@ function TasksList() {
         //filter - filter out the task with the given id 
         // data.filter(dataItem => condition)
     }
-    const handleAddTask = () => {
-       
+    const handleAddTask = (e) => {
+        e.preventDefault()
+
+        if (newTask === '') {
+            return;
+        }
         setTasksDictionary([
             ...tasksDictionary,
             {
@@ -37,12 +41,16 @@ function TasksList() {
     
         setNewTask('')
     }
+
     //useRef
     //onChange, managed state forms
     return (
-        <>
-           <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}/>
-           <button onClick={handleAddTask}>Add Task</button>
+        <>  
+           
+               <form onSubmit={handleAddTask}>
+                   <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}/>
+                   <button type="submit">Add Task</button>
+               </form>
            <ul>
                 {
                     //box.map(data => WHATTODO WITH {DATA} )
