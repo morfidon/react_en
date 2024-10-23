@@ -16,6 +16,7 @@ function TasksList() {
             }
         )
     ))
+    const inputTaskRef = useRef(null);
     // map function
     // tasks.map(whatToDoFunction)
     //
@@ -27,7 +28,7 @@ function TasksList() {
     }
     const handleAddTask = (e) => {
         e.preventDefault()
-
+        inputTaskRef.current.focus()
         if (newTask === '') {
             return;
         }
@@ -48,7 +49,9 @@ function TasksList() {
         <>  
            
                <form onSubmit={handleAddTask}>
-                   <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}/>
+                   <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}
+                    ref={inputTaskRef} autoFocus
+                   />
                    <button type="submit">Add Task</button>
                </form>
            <ul>
