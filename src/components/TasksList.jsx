@@ -6,6 +6,13 @@ const SortButton = ({ sortDirection, onSort }) =>
           Sort {sortDirection === 'asc' ? 'desc' : 'asc'}
     </button>
 )
+const TaskItem = ({ task, onRemove }) =>
+(
+    <li>
+       {task.text}
+       <button onClick={() =>onRemove(task.id)}>X</button>
+    </li>
+)
 function TasksList() {
     const tasks = [
         'Do homework',
@@ -74,9 +81,15 @@ function TasksList() {
                
            <ul>
                 {
-                    tasksDictionary.map(task => <li key={task.id}>{task.text}
-                        <button onClick={() =>handleRemoveTask(task.id)}>X</button>
-                    </li>)
+                    tasksDictionary.map(task => 
+                    
+                    <TaskItem 
+                        key={task.id}
+                        task={task}
+                        onRemove={handleRemoveTask}
+                    />
+                
+                    )
                 }
            </ul>
         </>
