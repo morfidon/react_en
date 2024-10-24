@@ -1,5 +1,11 @@
 import { useState, useRef } from 'react'
 import { v4 } from 'uuid'
+const SortButton = ({ sortDirection, onSort }) => 
+(    
+    <button onClick={onSort}>
+          Sort {sortDirection === 'asc' ? 'desc' : 'asc'}
+    </button>
+)
 function TasksList() {
     const tasks = [
         'Do homework',
@@ -16,16 +22,14 @@ function TasksList() {
             }
         )
     ))
+    const renderCount = useRef(0);
+    renderCount.current++;
     const inputTaskRef = useRef(null);
-    // map function
-    // tasks.map(whatToDoFunction)
-    //
+
     const [newTask, setNewTask] = useState('')
     const [sortDirection, setSortDirection] = useState('asc')
     const handleRemoveTask = (id) => {
         setTasksDictionary(tasksDictionary.filter(task => task.id !== id))
-        //filter - filter out the task with the given id 
-        // data.filter(dataItem => condition)
     }
     const handleAddTask = (e) => {
         e.preventDefault()
@@ -45,8 +49,7 @@ function TasksList() {
         setNewTask('')
     }
 
-    //useRef
-    //onChange, managed state forms
+
     const handleSort = () => {
             const sortedTasks = [...tasksDictionary].sort((a, b) => {                
                 return sortDirection === 'asc' ? a.text.localeCompare(b.text) : b.text.localeCompare(a.text)
@@ -57,19 +60,20 @@ function TasksList() {
     }
     return (
         <>  
-           
+               <h1>Render amount: {renderCount.current}</h1>
                <form onSubmit={handleAddTask}>
                    <input type="text" value={newTask} onChange={(e) => setNewTask(e.target.value)}
                     ref={inputTaskRef} autoFocus
                    />
                    <button type="submit">Add Task</button>
                </form>
-               <button onClick={handleSort}>
-                   Sort {sortDirection === 'asc' ? 'desc' : 'asc'}
-               </button>
+               <SortButton 
+                   sortDirection={sortDirection}
+                   onSort={handleSort}
+               />
+               
            <ul>
                 {
-                    //box.map(data => WHATTODO WITH {DATA} )
                     tasksDictionary.map(task => <li key={task.id}>{task.text}
                         <button onClick={() =>handleRemoveTask(task.id)}>X</button>
                     </li>)
